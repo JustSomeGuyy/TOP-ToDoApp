@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do App</title>
-    <link rel="stylesheet" href="/src/style.css">
-    <script src="/src/main.js"></script>
+    <link rel="stylesheet" href="/node_modules/@picocss/pico/css/pico.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script type="module" src="/src/index.js" defer></script>
 </head>
 <body>
     
@@ -14,26 +15,64 @@
         <h1 class="logo">OrganizeMe</h1>
     </div>
 
-    <div class="sidebar">
-        
+    <div id="main" class="grid">
+        <div class="sidebar">
+            <div id="filters">
+                <h3>Filters</h3>
+                <input type="checkbox" name="name" id="name">
+                <label for="name">Name Descending</label>
+                <input type="checkbox" name="priority" id="priority">
+                <label for="priority">Priority</label>
+                <input type="checkbox" name="due-date" id="due-date">
+                <label for="due-date">Due Date</label>
+            </div>
+        </div>
+
+        <div class="main-display">
+            <div class="menu">
+                <p class="message" id="message">Good evening, </p>
+                <button id="new-project">New Project</button>
+                <button id="new-task">New Task</button>
+            </div>
+            <div id="priority">
+
+            </div>
+            <div id="projects">
+
+            </div>
+            <div id="general">
+
+            </div>
+        </div>
     </div>
 
-    <div class="main">
-        <div class="menu">
-            <p class="message" id="message"></p>
-            <select name="" id=""></select>
-        </div>
-        <div id="priority-display" class="priority">
+    <form style="width: 40dvw; margin: 0 auto;">
+        <h2>New Project</h2>
+            <label for="project-name">
+                <input type="text" name="project-name" id="projectname" placeholder="Name of project.." required autocomplete="off">
+            </label>
+            <fieldset class="grid">
+                <legend>Priority</legend>
+                <label for="low">
+                    <input type="radio" name="priority" id="low" value="low" checked>
+                    Low
+                </label>
+                <label for="medium">
+                    <input type="radio" name="priority" id="medium" value="medium">
+                    Medium
+                </label>
+                <label for="high">
+                    <input type="radio" name="priority" id="high" value="high">
+                    High
+                </label>
+            </fieldset>
+            <label for="date">Due Date
+                <input type="date" name="date" id="myDate" value="2023-01-01">
+            </label>
 
-        </div>
-        <div class="projects" id="projects">
-
-        </div>
-        <div class="general" id="general">
-
-        </div>
-    </div>
-
+            <input type="text" name="notes" id="notes" autocomplete="off">
+            <button type="button" id="addProject">Add Project</button>
+        </form>
     <div class="footer">
 
     </div>
