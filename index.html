@@ -15,7 +15,15 @@
         <h1 class="logo">OrganizeMe</h1>
     </div>
 
-    <div id="main" class="grid">
+    <div class="menu grid">
+        <h2 class="message" id="message">Good evening, </h2>
+        <div class="button-menu grid">
+            <button id="new-project">New Project</button>
+            <button id="new-task">New Task</button>
+        </div>
+    </div>
+
+    <div id="main" class="container grid">
         <div class="sidebar">
             <div id="filters">
                 <h3>Filters</h3>
@@ -29,11 +37,7 @@
         </div>
 
         <div class="main-display">
-            <div class="menu">
-                <p class="message" id="message">Good evening, </p>
-                <button id="new-project">New Project</button>
-                <button id="new-task">New Task</button>
-            </div>
+            
             <div id="priority">
 
             </div>
@@ -70,14 +74,13 @@
                 </label>
             </fieldset>
             <label for="date">Due Date
-                <input type="date" name="date" id="myDate" value="2023-01-01">
+                <input type="date" name="date" id="myDate" value="">
             </label>
 
             <input type="text" name="notes" id="notes" autocomplete="off" placeholder="Description..">
             <button type="button" id="addProject">Add Project</button>
         </form>
         <input type="text" name="" id="project-task" autocomplete="off">
-        <button id="addTasks">New Task</button>
     <div class="footer">
 
     </div>

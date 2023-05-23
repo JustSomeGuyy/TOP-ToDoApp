@@ -1,3 +1,5 @@
+import { displayProjects } from "../index.js";
+
 export const projectArray = [];
 
 export default class Projects {
@@ -32,34 +34,9 @@ export function addProject() {
 };
 
 // This function allows for creating tasks in certain projects
-export function addProjectTasks(projectId) {
-  let task = document.getElementById('project-task').value;
+export function addProjectTasks(projectId, task) {
   const targetProject = projectArray.find(project => project.id === projectId);
   if (targetProject) {
     targetProject.tasks.push(task);
-  }
-}
-
-// Displaying project cards on DOM once they are created
-function displayProjects() {
-  const projectDisplay = document.getElementById('p-display');
-  const projectCard = document.createElement('div');
-  const projectTitle = document.createElement('h4');
-  const projectPriority = document.createElement('h6');
-  const projectDate = document.createElement('p');
-  const projectNotes = document.createElement('p');
-  
-  const taskSection = document.createElement('div');
-
-  // The content of the Project cards
-for(let i = 0; i < projectArray.length; i++){
-    projectTitle.innerText = projectArray[i].title;
-    projectPriority.innerText = `Priority: ${projectArray[i].priority} `;
-    projectDate.innerText =  `Due: ${projectArray[i].dueDate}`;
-    projectNotes.innerText = `Notes: ${projectArray[i].notes}`;
-
-    projectCard.append(projectTitle, projectPriority, projectDate, projectNotes, taskSection);
-
-    projectDisplay.appendChild(projectCard);
   }
 }
