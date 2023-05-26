@@ -1,4 +1,4 @@
-import { displayProjects } from "../index.js";
+import { closeForm, displayProjects, taskSelector } from "../index.js";
 
 export const projectArray = [];
 
@@ -25,18 +25,21 @@ export function addProject() {
       break;
     }
   }
-  let dueDate = document.getElementById('myDate').value;
+  let dueDate = document.getElementById('project-Date').value;
   let notes = document.getElementById('notes').value;
   let newProject = new Projects(id, title, priority, dueDate, notes);
   projectArray.push(newProject);
   displayProjects()
   document.querySelector('form').reset();
+  closeForm();
 };
 
 // This function allows for creating tasks in certain projects
-export function addProjectTasks(projectId, task) {
+function addProjectTasks(projectId) {
+  let task = document.getElementById('project-task').value;
   const targetProject = projectArray.find(project => project.id === projectId);
   if (targetProject) {
     targetProject.tasks.push(task);
   }
 }
+

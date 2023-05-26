@@ -7,7 +7,7 @@
     <title>To Do App</title>
     <link rel="stylesheet" href="/node_modules/@picocss/pico/css/pico.css">
     <link rel="stylesheet" href="/css/style.css">
-    <script type="module" src="/src/index.js" defer></script>
+    
 </head>
 <body>
     
@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <form style="width: 40dvw; margin: 0 auto;">
+    <form id="project-form" style="width: 40dvw; margin: 0 auto; display: none;">
         <h2>New Project</h2>
             <label for="project-name">
                 <input type="text" name="project-name" id="projectname" placeholder="Name of project.." required autocomplete="off">
@@ -74,15 +74,54 @@
                 </label>
             </fieldset>
             <label for="date">Due Date
-                <input type="date" name="date" id="myDate" value="">
+                <input type="date" name="date" id="project-Date" value="">
             </label>
 
             <input type="text" name="notes" id="notes" autocomplete="off" placeholder="Description..">
             <button type="button" id="addProject">Add Project</button>
         </form>
-        <input type="text" name="" id="project-task" autocomplete="off">
+
+        <!-- Popup for creating a new task -->
+        <div id="new-task-form" style="">
+            <h3>Where do you want to add this task?</h3>
+            <select id="task-selector">
+                <option value="none" disabled selected>Where do you want the task..</option>
+                <option value="inbox">Inbox</option>
+            </select>
+            <input type="text" name="task-input" id="task-input" placeholder="Name your task..">
+            <div class="task-form">
+                <fieldset class="grid">
+                    <legend>Priority</legend>
+                    <label for="low">
+                        <input type="radio" name="task-priority" id="low" value="Low"> Low
+                    </label>
+                    <label for="medium">
+                        <input type="radio" name="task-priority" id="medium" value="Medium"> Medium
+                    </label>
+                    <label for="high">
+                        <input type="radio" name="task-priority" id="high" value="High"> High
+                    </label>
+                </fieldset>
+                <input type="date" name="task-dueDate" id="task-date">
+            </div>
+            <button id="new-task-button">Create new task</button>
+        </div>
+
+        <!-- This is for the projects when the user clicks the card. It should show all the info for the project that was selected. -->
+        <form action="" id="project-popup">
+            <h3 id="p-title"></h3>
+            <h5 id="due-date"></h5>
+            <h5 id="p-prio"></h5>
+            <p id="p-notes"></p>
+            <div id="task-list">
+                
+            </div>
+        </form>
+
+        
     <div class="footer">
 
     </div>
+    <script type="module" src="/src/index.js"></script>
 </body>
 </html>

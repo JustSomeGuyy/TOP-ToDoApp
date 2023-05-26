@@ -1,14 +1,18 @@
-import Projects, { projectArray, addProject, addProjectTasks } from "./modules/projects.js";
+import Projects, { projectArray, addProject } from "./modules/projects.js";
+
+// TO DO:
+    // Add a function for adding tasks based on selection from a <select> html elm. That includes the general list as well.
+    // Add a checkbox that will strike out the task
+    // Add a way to delete projects
+    // See if there is a way to add a value to a select elem through JS, use that for adding task function param
 
 let button = document.getElementById('addProject');
 
 button.addEventListener('click', addProject);
 
-// let buttonTwo = document.getElementById('addTasks');
-// buttonTwo.addEventListener('click', () => addProjectTasks(projectId));
-
 console.log(projectArray)
 
+export let taskSelector = document.getElementById('task-selector');
 
 // Displaying project cards on DOM once they are created
 export function displayProjects() {
@@ -19,13 +23,8 @@ export function displayProjects() {
     const projectDate = document.createElement('p');
     const projectNotes = document.createElement('p');
     let taskButton = document.createElement('button');
-    
-    // For the task drop down.
-    const taskSection = document.createElement('div');
-    // const tasks = document.createElement('div');
-    // const doneTask = document.createElement('input[type="checkbox"]');
-    // const nameOfTask = document.createElement('p');
-    
+
+    const projectOption = document.createElement('option');
 
     // Classes for the project card
     projectCard.classList.add('p-card');
@@ -36,20 +35,39 @@ export function displayProjects() {
         projectPriority.textContent = `Priority: ${projectArray[i].priority} `;
         projectDate.textContent =  `Due: ${projectArray[i].dueDate}`;
         projectNotes.textContent = `Notes: ${projectArray[i].notes}`;
+        projectOption.textContent = projectArray[i].title;
+        projectOption.value = projectArray[i].title;
         
-        projectCard.append(projectTitle, projectPriority, projectDate, projectNotes, taskButton, taskSection);
+        projectCard.append(projectTitle, projectPriority, projectDate, projectNotes);
+
+        taskSelector.appendChild(projectOption);
 
         // Figure out how to create new button that allows users to add tasks specifically to the correct object based on which button it used
-        taskButton.addEventListener('click', () => addProjectTasks());
+
         
         projectDisplay.appendChild(projectCard);
     }
-  
-    // TO DO:
-    // Add a way that the tasks don't show unless they active a drop down.
-    // Add a checkbox that will strike out the task
-    // Add a way to delete projects
-
-    // for adding tasks to the current project
-  
   }
+
+
+//   This is for opening and closing the form that user will use to create new projects.
+const projectForm = document.getElementById('project-form');
+
+function showForm() {
+    projectForm.style.display = 'block';
+}
+
+export function closeForm(){
+    projectForm.style.display = 'none';
+}
+
+const showProjectForm = document.getElementById('new-project');
+
+showProjectForm.addEventListener('click', showForm);
+// End of form code
+
+
+// This function set is for showing the task popup
+function showTaskForm() {
+    
+}
