@@ -1,16 +1,18 @@
 import Projects, { projectArray, addProject } from "./modules/projects.js";
 
+import inboxTask, {tasksInput, newTask, createInboxTasks, showInboxSelectors, closeInboxSelectors, inboxForm} from "./modules/tasks.js";
+
 // TO DO:
     // Add a function for adding tasks based on selection from a <select> html elm. That includes the general list as well.
     // Add a checkbox that will strike out the task
     // Add a way to delete projects
     // See if there is a way to add a value to a select elem through JS, use that for adding task function param
 
+const newTaskButton = document.getElementById('new-task');
+
 let button = document.getElementById('addProject');
 
 button.addEventListener('click', addProject);
-
-console.log(projectArray)
 
 export let taskSelector = document.getElementById('task-selector');
 
@@ -68,6 +70,17 @@ showProjectForm.addEventListener('click', showForm);
 
 
 // This function set is for showing the task popup
-function showTaskForm() {
-    
+const taskFormButton = document.getElementById('new-task');
+const taskForm = document.getElementById('new-task-form')
+
+export function showTaskForm() {
+    taskForm.style.display = 'block';
 }
+
+export function closeTaskForm() {
+    taskForm.style.display = 'none';
+}
+
+taskFormButton.addEventListener('click', showTaskForm);
+
+console.log(projectArray);

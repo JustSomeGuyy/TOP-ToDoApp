@@ -35,9 +35,13 @@ export function addProject() {
 };
 
 // This function allows for creating tasks in certain projects
-function addProjectTasks(projectId) {
-  let task = document.getElementById('project-task').value;
-  const targetProject = projectArray.find(project => project.id === projectId);
+export function addProjectTasks(title) {
+  let taskInput = document.createElement('input');
+  taskInput.type = 'text';
+  taskInput.className = 'project-task-input';
+  let task = taskInput.value;
+  
+  const targetProject = projectArray.find((project) => project.title === title);
   if (targetProject) {
     targetProject.tasks.push(task);
   }

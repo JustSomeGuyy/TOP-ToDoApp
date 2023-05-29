@@ -82,14 +82,14 @@
         </form>
 
         <!-- Popup for creating a new task -->
-        <div id="new-task-form" style="">
-            <h3>Where do you want to add this task?</h3>
+        <div id="new-task-form" style="display: none;">
+            <label for="task-selector">Where do you want to add this task?</label>
             <select id="task-selector">
-                <option value="none" disabled selected>Where do you want the task..</option>
+                <option value="none" selected disabled>Pick here</option>
                 <option value="inbox">Inbox</option>
             </select>
-            <input type="text" name="task-input" id="task-input" placeholder="Name your task..">
-            <div class="task-form">
+            <div id="button-space"></div>
+            <div id="task-form" style="display: none;">
                 <fieldset class="grid">
                     <legend>Priority</legend>
                     <label for="low">
@@ -122,6 +122,6 @@
     <div class="footer">
 
     </div>
-    <script type="module" src="/src/index.js"></script>
+    <script type="module" src="/src/index.js" defer></script>
 </body>
 </html>
