@@ -2,7 +2,7 @@ import { closeForm, displayProjects, taskSelector } from "../index.js";
 
 export const projectArray = [];
 
-export default class Projects {
+export default class projects {
     constructor(id ,title, priority, dueDate, notes) {
         this.id = id
         this.title = title;
@@ -33,17 +33,3 @@ export function addProject() {
   document.querySelector('form').reset();
   closeForm();
 };
-
-// This function allows for creating tasks in certain projects
-export function addProjectTasks(title) {
-  let taskInput = document.createElement('input');
-  taskInput.type = 'text';
-  taskInput.className = 'project-task-input';
-  let task = taskInput.value;
-  
-  const targetProject = projectArray.find((project) => project.title === title);
-  if (targetProject) {
-    targetProject.tasks.push(task);
-  }
-}
-

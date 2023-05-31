@@ -88,7 +88,9 @@
                 <option value="none" selected disabled>Pick here</option>
                 <option value="inbox">Inbox</option>
             </select>
-            <div id="button-space"></div>
+
+            <div id="project-task-container" style="display: none;"><input type="text" name="project-task-input" id="project-task-input" onfocus="this.value=''" autocomplete="off"></div>
+
             <div id="task-form" style="display: none;">
                 <fieldset class="grid">
                     <legend>Priority</legend>
@@ -103,6 +105,7 @@
                     </label>
                 </fieldset>
                 <input type="date" name="task-dueDate" id="task-date">
+                <input type="text" name="task-title" id="add-task" onfocus="this.value=''" autocomplete="off">
             </div>
             <button id="new-task-button">Create new task</button>
         </div>

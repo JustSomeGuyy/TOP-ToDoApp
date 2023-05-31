@@ -1,6 +1,6 @@
 import Projects, { projectArray, addProject } from "./modules/projects.js";
 
-import inboxTask, {tasksInput, newTask, createInboxTasks, showInboxSelectors, closeInboxSelectors, inboxForm} from "./modules/tasks.js";
+import inboxTask, { inbox, newTask, createInboxTasks, showInboxSelectors, closeInboxSelectors, inboxForm} from "./modules/tasks.js";
 
 // TO DO:
     // Add a function for adding tasks based on selection from a <select> html elm. That includes the general list as well.
@@ -20,13 +20,21 @@ export let taskSelector = document.getElementById('task-selector');
 export function displayProjects() {
     const projectDisplay = document.getElementById('p-display');
     const projectCard = document.createElement('div');
+    const selectedProject = document.createElement('div');
     const projectTitle = document.createElement('h4');
     const projectPriority = document.createElement('h6');
     const projectDate = document.createElement('p');
     const projectNotes = document.createElement('p');
+
     let taskButton = document.createElement('button');
 
     const projectOption = document.createElement('option');
+
+    selectedProject.addEventListener('click', displaySelectedProject());
+
+    function displaySelectedProject() {
+        
+    }
 
     // Classes for the project card
     projectCard.classList.add('p-card');
@@ -40,7 +48,7 @@ export function displayProjects() {
         projectOption.textContent = projectArray[i].title;
         projectOption.value = projectArray[i].title;
         
-        projectCard.append(projectTitle, projectPriority, projectDate, projectNotes);
+        projectCard.append(projectTitle);
 
         taskSelector.appendChild(projectOption);
 
@@ -84,3 +92,5 @@ export function closeTaskForm() {
 taskFormButton.addEventListener('click', showTaskForm);
 
 console.log(projectArray);
+
+console.log(inbox)
