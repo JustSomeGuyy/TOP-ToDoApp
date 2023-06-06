@@ -27,7 +27,7 @@ export function addProject() {
   }
   let dueDate = document.getElementById('project-Date').value;
   let notes = document.getElementById('notes').value;
-  let newProject = new Projects(id, title, priority, dueDate, notes);
+  let newProject = new projects(id, title, priority, dueDate, notes);
   projectArray.push(newProject);
   displayProjects()
   document.querySelector('form').reset();

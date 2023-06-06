@@ -5,11 +5,6 @@ export const inbox = [];
 
 let selectedProjectTitle = '';
 
-
-function removeProjectButtonListener() {
-    projectTaskButton.removeEventListener('click', addProjectTasks);
-}
-
 export default class inboxTask {
     constructor(title, priority, dueDate) {
         this.title = title;
@@ -60,7 +55,7 @@ export function newTask() {
         break;
       }
     }
-    let dueDate = document.getElementById('task-date');
+    let dueDate = document.getElementById('task-date').value;
     let newInboxTask = new inboxTask(title, priority, dueDate);
     inbox.push(newInboxTask);
     closeTaskForm();
@@ -75,6 +70,10 @@ export function newTask() {
     let inboxTaskButton = document.getElementById('new-task-button');
     inboxTaskButton.removeEventListener('click', createInboxTasks);
   }
+
+  function removeProjectButtonListener() {
+    projectTaskButton.removeEventListener('click', addProjectTasks);
+}
   
   function addProjectButtonListener() {
     let projectTaskButton = document.getElementById('new-task-button');

@@ -20,44 +20,34 @@ export let taskSelector = document.getElementById('task-selector');
 export function displayProjects() {
     const projectDisplay = document.getElementById('p-display');
     const projectCard = document.createElement('div');
-    const selectedProject = document.createElement('div');
-    const projectTitle = document.createElement('h4');
-    const projectPriority = document.createElement('h6');
-    const projectDate = document.createElement('p');
-    const projectNotes = document.createElement('p');
-
-    let taskButton = document.createElement('button');
+    const projectTitle = document.createElement('h2');
 
     const projectOption = document.createElement('option');
 
-    selectedProject.addEventListener('click', displaySelectedProject());
-
-    function displaySelectedProject() {
-        
-    }
-
     // Classes for the project card
-    projectCard.classList.add('p-card');
+    projectTitle.classList.add('p-card');
 
     // The content of the Project cards
     for(let i = 0; i < projectArray.length; i++){
         projectTitle.textContent = projectArray[i].title;
-        projectPriority.textContent = `Priority: ${projectArray[i].priority} `;
-        projectDate.textContent =  `Due: ${projectArray[i].dueDate}`;
-        projectNotes.textContent = `Notes: ${projectArray[i].notes}`;
         projectOption.textContent = projectArray[i].title;
         projectOption.value = projectArray[i].title;
         
         projectCard.append(projectTitle);
 
         taskSelector.appendChild(projectOption);
-
-        // Figure out how to create new button that allows users to add tasks specifically to the correct object based on which button it used
-
+        projectCard.id = projectArray[i].id;
         
         projectDisplay.appendChild(projectCard);
     }
-  }
+
+    
+const projectElements = document.querySelectorAll('.p-card');
+    
+projectElements.forEach(projectElement => {
+    projectElement.addEventListener('click', displayProjectTasks);
+    });
+}
 
 
 //   This is for opening and closing the form that user will use to create new projects.
@@ -93,4 +83,33 @@ taskFormButton.addEventListener('click', showTaskForm);
 
 console.log(projectArray);
 
-console.log(inbox)
+console.log(inbox);
+
+// Create a display that will show the appropriate tasks based on which 'project' is selected, either Inbox or any of the projects. The display needs to update based on when the projects array updates and when the task list updates.
+
+export function displayProjectTasks(event) {
+    let param = document.querySelector('.p-card').textContent;
+
+
+    const selectedProject = projectArray.find((project) => project.title === param);
+    if (selectedProject && selectedProject.tasks && selectedProject.tasks.length > 0) {
+        const taskDisplay = document.getElementById('selected-task-display');
+        taskDisplay.innerHTML = '';
+    
+        for (let i = 0; i < selectedProject.tasks.length; i++) {
+            const taskCard = document.createElement('div');
+            const taskCheckBox = document.createElement('input');
+            const taskLabel = document.createElement('label');
+
+            taskCheckBox.type = 'checkbox';
+            taskLabel.textContent = selectedProject.tasks[i];
+
+            taskCard.append(taskCheckBox, taskLabel);
+            taskDisplay.appendChild(taskCard);
+        }
+    }
+}
+
+export function displayInboxTasks() {
+
+}
