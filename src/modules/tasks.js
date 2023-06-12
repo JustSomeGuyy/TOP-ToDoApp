@@ -1,5 +1,5 @@
 import Projects, { projectArray } from "./projects.js";
-import { closeTaskForm, taskSelector } from "../index.js";
+import { closeTaskForm, displayProjectTasks, taskSelector } from "../index.js";
 
 export const inbox = [];
 
@@ -58,6 +58,7 @@ export function newTask() {
     let dueDate = document.getElementById('task-date').value;
     let newInboxTask = new inboxTask(title, priority, dueDate);
     inbox.push(newInboxTask);
+    displayProjectTasks(title);
     closeTaskForm();
   }
   
@@ -88,9 +89,10 @@ export function newTask() {
     const targetProject = projectArray.find((project) => project.title === title);
     if (targetProject) {
       targetProject.tasks.push(task);
+      displayProjectTasks(targetProject)
     }
-    
-    selectedProjectTitle = '';
+
+    selectedProjectTitle = targetProject;
 
     closeTaskForm();
   }

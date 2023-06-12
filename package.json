@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/JustSomeGuyy/TOP-ToDoApp#readme",
   "dependencies": {
-    "@picocss/pico": "^1.5.10"
+    "@picocss/pico": "^1.5.10",
+    "tailwindcss": "^3.3.2"
   }
 }

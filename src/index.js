@@ -18,36 +18,32 @@ export let taskSelector = document.getElementById('task-selector');
 
 // Displaying project cards on DOM once they are created
 export function displayProjects() {
-    const projectDisplay = document.getElementById('p-display');
-    const projectCard = document.createElement('div');
-    const projectTitle = document.createElement('h2');
-
+    const projectDisplay = document.getElementById('array-titles');
     const projectOption = document.createElement('option');
 
-    // Classes for the project card
-    projectTitle.classList.add('p-card');
+  
+    // Clear the project display before appending new project titles
+    projectDisplay.innerHTML = '';
+  
+    for (let i = 0; i < projectArray.length; i++) {
+        const projectTitle = document.createElement('h3');
+        
+        projectTitle.classList.add('p-card');
 
-    // The content of the Project cards
-    for(let i = 0; i < projectArray.length; i++){
         projectTitle.textContent = projectArray[i].title;
         projectOption.textContent = projectArray[i].title;
         projectOption.value = projectArray[i].title;
-        
-        projectCard.append(projectTitle);
+
 
         taskSelector.appendChild(projectOption);
-        projectCard.id = projectArray[i].id;
-        
-        projectDisplay.appendChild(projectCard);
-    }
+        projectTitle.id = projectArray[i].title;
 
-    
-const projectElements = document.querySelectorAll('.p-card');
-    
-projectElements.forEach(projectElement => {
-    projectElement.addEventListener('click', displayProjectTasks);
-    });
-}
+        projectDisplay.appendChild(projectTitle);
+        
+        // Attach event listener to each project title element
+        projectTitle.addEventListener('click', () => displayProjectTasks(projectArray[i]));
+    }
+  }
 
 
 //   This is for opening and closing the form that user will use to create new projects.
@@ -87,29 +83,91 @@ console.log(inbox);
 
 // Create a display that will show the appropriate tasks based on which 'project' is selected, either Inbox or any of the projects. The display needs to update based on when the projects array updates and when the task list updates.
 
-export function displayProjectTasks(event) {
-    let param = document.querySelector('.p-card').textContent;
-
-
-    const selectedProject = projectArray.find((project) => project.title === param);
+export function displayProjectTasks(project) {
+    const selectedProject = projectArray.find((p) => p.title === project.title);
+  
     if (selectedProject && selectedProject.tasks && selectedProject.tasks.length > 0) {
-        const taskDisplay = document.getElementById('selected-task-display');
+        const taskInfoDisplay = document.getElementById('project-display');
+        taskInfoDisplay.innerHTML = '';
+
+        const taskDisplay = document.createElement('div');
+        const projectModalTitle = document.createElement('h3')
+        const projectDate = document.createElement('p');
+        const projectPriority = document.createElement('p');
+        const projectNotes = document.createElement('p');
+
+        projectModalTitle.textContent = selectedProject.title;
+        projectDate.textContent = `Due: ${selectedProject.dueDate}`;
+        projectPriority.textContent = `Priority: ${selectedProject.priority}`;
+        projectNotes.textContent = selectedProject.notes;
+
+        taskInfoDisplay.append(projectModalTitle, projectDate, projectPriority, projectNotes, taskDisplay)
+
         taskDisplay.innerHTML = '';
-    
+
         for (let i = 0; i < selectedProject.tasks.length; i++) {
-            const taskCard = document.createElement('div');
-            const taskCheckBox = document.createElement('input');
-            const taskLabel = document.createElement('label');
+          const taskCard = document.createElement('div');
+          const taskCheckBox = document.createElement('input');
+          const taskLabel = document.createElement('label');
 
-            taskCheckBox.type = 'checkbox';
-            taskLabel.textContent = selectedProject.tasks[i];
 
-            taskCard.append(taskCheckBox, taskLabel);
-            taskDisplay.appendChild(taskCard);
+          taskCheckBox.type = 'checkbox';
+          taskLabel.textContent = selectedProject.tasks[i];
+
+          taskCard.append(taskCheckBox, taskLabel);
+          taskDisplay.appendChild(taskCard);
         }
     }
 }
 
-export function displayInboxTasks() {
+displayProjectTasks();
 
+const inboxTaskDisplayButton = document.getElementById('inbox-button');
+
+inboxTaskDisplayButton.addEventListener('click', displayInboxTasks);
+
+function displayInboxTasks() {
+    const inboxTaskDisplay = document.getElementById('inbox-display');
+    inboxTaskDisplay.innerHTML = '';
+
+    for(let i = 0; i < inbox.length; i++){
+        const inboxCard = document.createElement('div');
+        const inboxTitle = document.createElement('h4');
+        const inboxCheckBox = document.createElement('input');
+        const inboxDate = document.createElement('p');
+        const inboxPriority = document.createElement('p');
+
+        inboxCheckBox.type = 'checkbox';
+        
+        inboxTitle.textContent = inbox[i].title;
+        inboxPriority.textContent = `Priority: ${inbox[i].priority}`;
+        inboxDate.textContent = `Due: ${inbox[i].dueDate}`;
+
+        inboxCard.append(inboxCheckBox, inboxTitle, inboxPriority, inboxDate);
+
+        inboxTaskDisplay.appendChild(inboxCard);
+    }
 }
+
+function getGreeting() {
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+  
+    let greeting;
+  
+    if (currentHour >= 5 && currentHour < 12) {
+      greeting = 'Good morning';
+    } else if (currentHour >= 12 && currentHour < 18) {
+      greeting = 'Good afternoon';
+    } else {
+      greeting = 'Good evening';
+    }
+  
+    return greeting;
+  }
+  
+  
+  const userGreeting = getGreeting();
+  const message = document.getElementById('message');
+
+  message.textContent = `${userGreeting}, User!`;
