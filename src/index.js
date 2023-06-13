@@ -28,7 +28,7 @@ export function displayProjects() {
     for (let i = 0; i < projectArray.length; i++) {
         const projectTitle = document.createElement('h3');
         
-        projectTitle.classList.add('p-card');
+        projectTitle.classList.add('text-2xl', 'py-3', 'font-extralight', 'hover:shadow-lg', 'rounded', 'cursor-pointer', 'text-center', 'w-1/2');
 
         projectTitle.textContent = projectArray[i].title;
         projectOption.textContent = projectArray[i].title;
