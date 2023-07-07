@@ -5,37 +5,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do App</title>
-    <link rel="stylesheet" href="/src/style.css">
-    <script src="/src/main.js"></script>
+    <link rel="stylesheet" href="/css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Nanum+Myeongjo:wght@400;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <div class="header">
+    <header class="header">
         <h1 class="logo">OrganizeMe</h1>
-    </div>
+    </header>
 
-    <div class="sidebar">
+    <nav class="menu">
+        <div id="menu">
+            <p class="message" id="message"> </p>
+            <div class="menu-buttons">
+                <button id="new-project" class="main-header-button">New Project</button>
+                <button id="new-task" class="main-header-b">New Task</button>
+            </div>
+        </div>
+        <div id="new-task-form" >
+            <label for="task-selector">Where do you want to add this task?</label>
+            <select id="task-selector">
+                <option value="none" selected disabled>Pick here</option>
+                <option value="inbox">Inbox</option>
+            </select>
+    
+            <div id="project-task-container" style="display: none;">
+                <input type="text" name="project-task-input" id="project-task-input" onfocus="this.value=''" autocomplete="off" class="input">
+            </div>
+    
+            <div id="task-form">
+                    <div class="inline">
+                        <legend>Priority</legend>
+                        <label for="low">
+                            <input type="radio" name="task-priority" id="low" value="Low" checked> Low
+                        </label>
+                        <label for="medium">
+                            <input type="radio" name="task-priority" id="medium" value="Medium"> Medium
+                        </label>
+                        <label for="high">
+                            <input type="radio" name="task-priority" id="high" value="High"> High
+                        </label>
+                    </div>
+                <input type="date" name="task-dueDate" id="task-date" class="input">
+                <input type="text" name="task-title" id="add-task" onfocus="this.value=''" autocomplete="off" class="input">
+            </div>
+            <button id="new-task-button">Create new task</button>
+        </div>
+    </nav>
+
+    <aside class="sidebar">
+        <p class="sidebar-title">Projects</p>
+        <p id="inbox-button" class="project-title hover">Inbox</p>
+        <div id="array-titles">
+            
+        </div>
+    </aside>
+
+    <main class="displays">
+        <div id="inbox-display">
+        </div>
+        <div id="project-display">
+        </div>
+    </main>
+
+    <form id="project-form">
+        <button id="close-form">X</button>
+        <p class="title">New Project</p>
+            <input type="text" name="project-name" id="projectname" placeholder="Name of project.." required autocomplete="off" class="distance">
+            <div class="grid">
+                <legend>Priority:</legend>                
+                    <label for="low">
+                        <input type="radio" name="priority" id="low" value="Low" class="radio" checked>
+                        Low
+                    </label>
+                    
+                    <label for="medium">
+                        <input type="radio" name="priority" id="medium" value="Medium" class="radio">
+                        Medium
+                    </label>
+                
+                    <label for="high">
+                        <input type="radio" name="priority" id="high" value="High" class="radio">
+                        High
+                    </label>
+            </div>
+            <label for="project-Date" class="bold">Due Date
+                <input type="date" name="date" id="project-Date" value="" class="distance"></label>
+            <input type="text" name="notes" id="notes" autocomplete="off" placeholder="Notes about the project.." class="distance">
+            <button type="button" id="addProject">Add Project</button>
+    </form>        
         
-    </div>
+    <footer class="footer">
+        <p>Copyright 2023 &copy; <a href="https://github.com/JustSomeGuyy">Tyler Wolfe</a></p>
+        <a href="https://github.com/JustSomeGuyy"><img src="images/github-mark.png" alt="The github logo with a link to the creators github account"></a>
+    </footer>
 
-    <div class="main">
-        <div class="menu">
-            <p class="message" id="message"></p>
-            <select name="" id=""></select>
-        </div>
-        <div id="priority-display" class="priority">
+<!-- JavaScript for the webapp -->
 
-        </div>
-        <div class="projects" id="projects">
-
-        </div>
-        <div class="general" id="general">
-
-        </div>
-    </div>
-
-    <div class="footer">
-
-    </div>
+    <script type="module" src="/src/index.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,524 @@
+:root {
+--background-color: #f4effb;
+  --text-color: #090410;
+  --secondary-color: #8770ad;
+  --primary-color: #57269c;
+  --dark-background: #e7e3ee;
+  --main-font: 'Agdasima', sans-serif;
+  --secondary-font: 'Nanum Myeongjo', serif;
+}
+
+html {
+  background-color: var(--background-color);
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: var(--text-color);
+}
+@media(prefers-color-scheme: dark){
+
+}
+
+body {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas: 
+  "header header header header"
+  "menu menu menu menu"
+  "aside display display display"
+  "footer footer footer footer";
+}
+
+/* Header */
+
+header {
+  grid-area: header;
+}
+
+.logo {
+  font-size: 3.3rem;
+  margin: 0;
+  font-weight: 100;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  font-family: var(--main-font);
+}
+
+#menu {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 1em;
+  align-items: center;
+  height: calc(6.5rem - 15px);
+  font-size: 1.7em;
+}
+
+.menu {
+  grid-area: menu;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px black solid;
+  padding: 1rem 0;
+}
+
+.message {
+  font-family: var(--secondary-font);
+}
+
+.menu-buttons {
+  flex: 0 1 300px;
+  width: 20dvw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-header-button {
+  padding: .8em;
+  width: 8rem;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #57269c;
+  border: none;
+  color: #ffffff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.main-header-b {
+  background-color: #ffffff;
+  padding: .8em;
+  width: 8rem;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+/* Sidebar section */
+
+.sidebar {
+  grid-area: aside;
+  width: 24dvw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #e7e3ee;
+  min-height: 42rem;
+  margin-top: 1rem;
+  border-radius: 1rem;
+  font-family: var(--main-font);
+}
+
+.sidebar-title {
+  margin-top: 5px;
+  font-size: 2.5rem;
+  text-decoration: underline;
+}
+
+#array-titles {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.project-title {
+  cursor: pointer;
+  width: 75%;
+  height: 3rem;
+  margin: 1rem;
+  padding: 0 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+}
+
+/* This is for displaying the tasks along with the information for the projects. Such as date, priority, and any notes that were added. */
+
+.displays {
+  grid-area: display;
+}
+
+/* For the project display */
+
+#project-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+  display: none;
+}
+
+#project-display h3 {
+  font-size: 2.5rem;
+  margin: 1rem 0;
+}
+
+/* For the inbox display */
+
+#inbox-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: stretch;
+  display: none;
+
+}
+
+#inbox-display h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin: 1rem 0;
+}
+
+/* This is for the pop-up for adding a new project */
+
+#project-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  width: 700px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 2rem;
+  border: 1px solid black;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 10px;
+  display: none;
+  font-family: var(--main-font);
+}
+
+#project-form input[type="text"], input[type="date"]{
+  padding: .4rem;
+  font-family: var(--main-font);
+}
+
+#close-form {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  border: none;
+  background-color: white;
+  border-radius: 50px;
+  opacity: 40%;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 20px;
+  padding: 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.title {
+  font-size: 2.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.bold {
+  font-size: 1.8rem;
+}
+
+.grid {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  padding: .5rem 0;
+}
+
+.grid legend {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+
+
+.distance {
+  display: block;
+  margin: 1rem 0;
+  width: 100%;
+  font-size: 1.2rem;
+  padding: .3rem 0;
+}
+
+/* Below is the button for the pop-up for the project form */
+
+#addProject {
+  border: none;
+  padding: .8em;
+  width: 8rem;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* This section is for the the inbox forms that allow for adding tasks to the inbox */
+
+#new-task-form {
+  left: 50%;
+  display: none;
+  font-size: 1.5rem;
+  align-self: self-end;
+  margin-right: 2.2rem;
+}
+
+#new-task-form button {
+  padding: .8em;
+  width: 10rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: #e7e3ee;
+  border: none;
+}
+
+#new-task-form select {
+  width: 15rem;
+  font-size: 1.2rem;
+  padding: .3rem;
+  background-color: #bab6c1;
+  color: #090410;
+  border-radius: 6px;
+  border-width: 2px;
+  border: none;
+}
+
+#task-form {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.inline legend {
+  font-size: 1.6rem;
+  margin: 5px 0;
+}
+
+.input {
+  width: 100%;
+  font-size: .8rem;
+  border-radius: 6px;
+  border-width: 2px;
+  background-color: #bab6c1;
+  margin: .6rem 0;
+  padding: .3rem;
+  color: #090410;
+  border: none;
+}
+
+.inline label {
+  margin: 0 1rem;
+}
+
+.project-display-title {
+  font-size: 2.5rem;
+}
+
+.prio-date {
+  width: 20rem;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.p-notes {
+  padding: 0 4rem;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.task-display {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .7rem;
+}
+
+.task-card {
+  width: 95%;
+  height: 2rem;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: .3rem 0;
+  border: 1px solid var(--background-color);
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: var(--background-color);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.inbox-card {
+  width: 40rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inbox-card p {
+  margin: .5rem;
+}
+
+.inbox-title {
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  align-items: center;
+}
+
+.inbox-title p {
+  flex-basis: 65%;
+  text-align: center;
+}
+
+.inbox-prio {
+  width: 95%;
+  display: flex;
+  justify-content: space-around;
+  font-size: .9rem;
+}
+
+/* For the inputs in the forms */
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: white;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.10em solid black;
+  border-radius: 0.15em;
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(--secondary-color);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.completed {
+  text-decoration: line-through; 
+  color: #6b6870;
+}
+
+.hover {
+  --b: 0.1em;
+  --c: #57269c;
+  
+  color: #0000;
+  padding-block: var(--b);
+  background: 
+    linear-gradient(var(--c) 50%,#000 0) 0% calc(100% - var(--_p,0%))/100% 200%,
+    linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
+  -webkit-background-clip: text,padding-box;
+          background-clip: text,padding-box;
+  transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
+}
+.hover:hover {
+  --_p: 100%;
+  --_s: .3s;
+}
+
+.footer {
+  grid-area: footer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  font-family: var(--secondary-font);
+}
+
+.footer img {
+  height: 1.8rem;
+  margin-right: .2rem;
+}
+
+a {
+  position: relative;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text-color);
+}
+
+a::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--secondary-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+a:hover::before {
+  transform: scaleX(1);
+}
+
+input[type='radio']:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: #ffffff;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid black;
+}
+
+input[type='radio']:checked:after {
+  width: 15px;
+  height: 15px;
+  border-radius: 15px;
+  top: -2px;
+  left: -1px;
+  position: relative;
+  background-color: var(--secondary-color);
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid black;
+}
