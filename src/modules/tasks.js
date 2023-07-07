@@ -6,10 +6,11 @@ export const inbox = [];
 let selectedProjectTitle = '';
 
 export default class inboxTask {
-    constructor(title, priority, dueDate) {
+    constructor(title, priority, dueDate, id) {
         this.title = title;
         this.priority = priority;
         this.dueDate = dueDate;
+        this.id = id;
     }
 }
 
@@ -56,7 +57,8 @@ export function newTask() {
       }
     }
     let dueDate = document.getElementById('task-date').value;
-    let newInboxTask = new inboxTask(title, priority, dueDate);
+    let id = inbox.length;
+    let newInboxTask = new inboxTask(title, priority, dueDate, id);
     inbox.push(newInboxTask);
     displayProjectTasks(title);
     closeTaskForm();
@@ -100,7 +102,7 @@ export function newTask() {
   function showProjectInput() {
     let container = document.getElementById('project-task-container');
 
-    container.style.display = 'block';
+    container.style.display = 'flex';
   }
 
   function closeProjectInput() {
