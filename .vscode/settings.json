@@ -4,5 +4,6 @@
     ],
     "cSpell.ignoreWords": [
         "projectname"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
